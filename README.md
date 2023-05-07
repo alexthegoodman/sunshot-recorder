@@ -2,11 +2,10 @@
 
 C++ Native Node Module for SunShot (Electron) which allows for the retrieval of window position and size
 
-Recommended: Latest Node Version
-`volta install node@latest`
-
 ```
+`volta install node@16.16.0`
 `npm install`
+`npm link` (this way `sunshot` main repo can link back)
 ```
 
 ```
