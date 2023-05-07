@@ -13,3 +13,8 @@ C++ Native Node Module for SunShot (Electron) which allows for the retrieval of 
 `node-gyp build`
 `node test.js`
 ```
+
+```
+For Electron:
+`node-gyp rebuild --target=21.4.4 --platform=win32 --arch=x64 --runtime=electron --abi=109 --uv=1 --libc=glibc --electron=21.4.4 --webpack=true --dist-url=https://electronjs.org/headers`
+```
