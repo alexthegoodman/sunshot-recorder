@@ -8,7 +8,7 @@ using namespace std;
 
 HWND target_hwnd = nullptr;
 LPCSTR search_title = nullptr;
-std::string search_hwnd_id = nullptr;
+LPCSTR search_hwnd_id = nullptr;
 
 // set target_hwnd based on search_title
 BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM lParam) {
@@ -51,8 +51,9 @@ NAN_METHOD(SetTargetWindow) {
 
 // set target_hwnd based on search_hwnd_id
 BOOL CALLBACK EnumWindowsProcHwnd(HWND hwnd, LPARAM lParam) {
-    LONG hwnd_id = GetWindowLong(hwnd, GWLP_HWNDPARENT);
-    if (hwnd_id == stoi(search_hwnd_id)) {
+    // LONG hwnd_id = GetWindowLong(hwnd, GWLP_HWNDPARENT);
+    double hwnd_double = static_cast<double>(reinterpret_cast<uintptr_t>(hwnd));
+    if (hwnd_double == stod(search_hwnd_id)) {
         target_hwnd = hwnd;
         return FALSE; // Stop enumerating windows
     }
@@ -99,10 +100,12 @@ NAN_METHOD(GetWindowHwnd) {
         return;
     }
 
-    LONG hwnd_id = GetWindowLong(target_hwnd, GWLP_HWNDPARENT);
+    double hwnd_double = static_cast<double>(reinterpret_cast<uintptr_t>(target_hwnd));
+
+    printf("target_hwnd: %d %f\n", target_hwnd, hwnd_double);
 
     // return target_hwnd
-    info.GetReturnValue().Set(Nan::New<Number>(hwnd_id));
+    info.GetReturnValue().Set(Nan::New<Number>(hwnd_double));
 }
 
 // test for print to console
