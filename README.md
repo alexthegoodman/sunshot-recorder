@@ -20,3 +20,8 @@ For Electron:
 or
 `node-gyp rebuild --target=21.4.4 --arch=x64 --dist-url=https://electronjs.org/headers`
 ```
+
+Debugging DLLs:
+```
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\bin\Hostx64\x64> ./dumpbin /dependents C:\Users\alext\projects\common\sunshot-recorder\build\Release\addon.node
+```
